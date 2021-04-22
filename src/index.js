@@ -2,54 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 // css
 import "./index.css";
-// setup vars
-const firstBook = {
-  img:
-    "https://images-na.ssl-images-amazon.com/images/I/517h-u1AQlL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
-  title: "I Love You to the Moon and Back",
-  author: "Amelia Hepworth",
-};
 
-const secondBook = {
-  img:
-    "https://images-na.ssl-images-amazon.com/images/I/51a9yGrI3bL._AC_UL200_SR200,200_.jpg",
-  title: "Why a Daughter Needs a Mom",
-  author: "Susanna Leonard Hill",
-};
+import { books } from "./books";
+import Book from "./Book";
 
 function BookList() {
   return (
     <section className="booklist">
-      <Book
-        img={firstBook.img}
-        title={firstBook.title}
-        author={firstBook.author}
-      >
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum repellat
-          numquam tenetur nihil consequuntur quidem iste dolores placeat, et
-          tempora.
-        </p>
-      </Book>
-      <Book
-        img={secondBook.img}
-        title={secondBook.title}
-        author={secondBook.author}
-      />
+      {books.map((book, index) => {
+        return <Book key={book.id} {...book}></Book>;
+      })}
     </section>
   );
 }
-
-const Book = (props) => {
-  const { img, title, author, children } = props;
-  return (
-    <article className="book">
-      <img src={img} alt="" />
-      <h1>{title}</h1>
-      <h4>{author}</h4>
-      {children}
-    </article>
-  );
-};
 
 ReactDOM.render(<BookList />, document.getElementById("root"));
